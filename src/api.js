@@ -26,3 +26,31 @@ export const fetchMovieInfo = async (id) => {
     movie: res.data,
   };
 };
+export const fetchCastInfo = async (id) => {
+  const result = await axios.get(`/movie/${id}/credits`, {
+    params: { language: "en-US" },
+  });
+  return {
+    cast: result.data.cast,
+  };
+};
+export const fetchMovieReviews = async (id) => {
+  const resultat = await axios.get(`/movie/${id}/reviews`, {
+    params: { language: "en-US" },
+  });
+  return {
+    reviews: resultat.data.results,
+  };
+};
+export const searchMovie = async (movie) => {
+  const resultat = await axios.get(`/search/movie`, {
+    params: {
+      query: movie,
+      language: "en-US",
+    },
+  });
+
+  return {
+    films: resultat.data.results,
+  };
+};

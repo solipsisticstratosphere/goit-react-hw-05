@@ -1,5 +1,5 @@
-import { fetchTrendingMovies } from "../api";
-import MovieList from "../components/MovieList/MovieList";
+import { fetchTrendingMovies } from "../../api";
+import MovieList from "../../components/MovieList/MovieList";
 import { useState, useEffect } from "react";
 export default function Home() {
   const [movies, setMovies] = useState([]);
