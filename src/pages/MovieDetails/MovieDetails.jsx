@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect, Suspense, useRef } from "react";
 import {
   useParams,
   Link,
@@ -14,11 +14,8 @@ export default function MovieDetails() {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
-  const navigate = useNavigate();
-
-  // Определяем путь к предыдущей странице
-  const backLink = location.state?.from ?? "/movies";
-
+  const backLink = useRef(location.state?.from ?? "/movies");
+  console.log(backLink);
   useEffect(() => {
     async function fetchMovie() {
       try {
@@ -42,7 +39,7 @@ export default function MovieDetails() {
 
   return (
     <div>
-      <Link to={backLink}>Back to movies</Link>
+      <Link to={backLink.current}>Back to movies</Link>
       <MovieInfo movie={movie} />
 
       <nav>
